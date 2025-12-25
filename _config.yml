@@ -1,0 +1,41 @@
+# Site Settings
+title: Ishan Joshi
+description: 
+author: Ishan Joshi
+email: joshishan21@gmail.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://ishan-joshi.com" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Custom CSS
+sass:
+  style: compressed
+
+# Development settings
+livereload: true
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Blog settings
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Social links (update with your actual links)
+github_username: ishan-joshi-24
+twitter_username: 
+linkedin_username: ishan-joshi180 
+
