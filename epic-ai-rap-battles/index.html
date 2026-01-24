@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPIC AI RAP BATTLES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #050508;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-grid {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image:
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: 0.15;
+    }
+
+    .bg-glow.left {
+      left: -200px;
+      top: 20%;
+      background: var(--color-1, #ff00ff);
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    .bg-glow.right {
+      right: -200px;
+      top: 30%;
+      background: var(--color-2, #00ffff);
+      animation: glowPulse 4s ease-in-out infinite 2s;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(1.1); }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 30px 0 40px;
+    }
+
+    .header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      position: relative;
+    }
+
+    .header h1::after {
+      content: 'EPIC AI RAP BATTLES';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      filter: blur(20px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    /* Battle Arena */
+    .battle-arena {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+
+    .fighter {
+      flex: 1;
+      max-width: 200px;
+    }
+
+    /* Custom Dropdown */
+    .custom-select {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-trigger {
+      width: 100%;
+      padding: 16px 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: #fff;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      user-select: none;
+    }
+
+    .select-trigger::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid currentColor;
+      transition: transform 0.3s ease;
+    }
+
+    .custom-select.open .select-trigger::after {
+      transform: rotate(180deg);
+    }
+
+    .fighter.left .select-trigger {
+      border-color: var(--color-1, #ff00ff);
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.2), inset 0 0 20px rgba(255, 0, 255, 0.1);
+    }
+
+    .fighter.right .select-trigger {
+      border-color: var(--color-2, #00ffff);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+
+    .select-trigger:hover {
+      transform: scale(1.02);
+    }
+
+    .custom-select.open .select-trigger {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(15, 15, 25, 0.98);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+    }
+
+    .fighter.left .select-options {
+      border-color: var(--color-1, #ff00ff);
+    }
+
+    .fighter.right .select-options {
+      border-color: var(--color-2, #00ffff);
+    }
+
+    .custom-select.open .select-options {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .select-option {
+      padding: 14px 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .select-option::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--option-color);
+      box-shadow: 0 0 10px var(--option-color);
+    }
+
+    .select-option:hover {
+      background: rgba(255, 255, 255, 0.1);
+      padding-left: 28px;
+    }
+
+    .select-option.selected {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .fighter.left .select-option:hover,
+    .fighter.left .select-option.selected {
+      background: linear-gradient(90deg, rgba(255, 0, 255, 0.2), transparent);
+    }
+
+    .fighter.right .select-option:hover,
+    .fighter.right .select-option.selected {
+      background: linear-gradient(90deg, rgba(0, 255, 255, 0.2), transparent);
+    }
+
+    /* Hide native select */
+    .fighter select {
+      display: none;
+    }
+
+    .vs-badge {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vs-badge::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff00ff, #ffd700);
+      border-radius: 50%;
+      animation: vsPulse 1.5s ease-in-out infinite;
+      opacity: 0.3;
+    }
+
+    .vs-badge span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #ffd700;
+      text-shadow: 0 0 20px #ffd700, 0 0 40px #ff6600;
+      z-index: 1;
+    }
+
+    @keyframes vsPulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.3); opacity: 0.1; }
+    }
+
+    /* Battle Button */
+    .battle-button-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .battle-button {
+      position: relative;
+      padding: 18px 70px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .battle-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .battle-button:hover::before {
+      left: 0;
+    }
+
+    .battle-button:hover {
+      border-color: transparent;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3);
+    }
+
+    .battle-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Loader */
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .loader.active {
+      display: block;
+    }
+
+    .loader-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      color: #fff;
+      animation: glitch 0.3s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
+      25% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+      50% { text-shadow: -2px 0 #00ffff, 2px 0 #ff00ff; }
+      75% { text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff; }
+    }
+
+    .loader-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      animation: loading 1s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    /* Audio Player */
+    .audio-player {
+      display: none;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px 25px;
+      margin-bottom: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .audio-player.active {
+      display: block;
+    }
+
+    .player-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .play-pause-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .play-pause-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+    }
+
+    .play-pause-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+      margin-left: 3px;
+    }
+
+    .play-pause-btn svg#pauseIcon {
+      margin-left: 0;
+    }
+
+    .progress-section {
+      flex: 1;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      cursor: pointer;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      width: 0%;
+      transition: width 0.1s linear;
+      border-radius: 3px;
+    }
+
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 1px;
+    }
+
+    /* Lyrics Container */
+    .lyrics-container {
+      display: none;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      max-height: 500px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      backdrop-filter: blur(10px);
+    }
+
+    .lyrics-container.active {
+      display: block;
+    }
+
+    .lyrics-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .lyrics-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .lyrics-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    .lyric-section {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .rapper-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .rapper-tag::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: tagPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes tagPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .lyric-line {
+      font-size: 1.05rem;
+      line-height: 2.2;
+      padding: 8px 20px;
+      margin: 4px 0;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.35);
+      transition: all 0.4s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .lyric-line.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
+      border-left-color: var(--rapper-color);
+      transform: translateX(10px);
+    }
+
+    .lyric-line.past {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Company Colors */
+    .company-openai { --rapper-color: #10a37f; color: #10a37f; }
+    .company-anthropic { --rapper-color: #d4a574; color: #d4a574; }
+    .company-google { --rapper-color: #4285f4; color: #4285f4; }
+    .company-meta { --rapper-color: #0668e1; color: #0668e1; }
+    .company-xai { --rapper-color: #a855f7; color: #a855f7; }
+
+    .rapper-tag.company-openai { background: rgba(16, 163, 127, 0.15); }
+    .rapper-tag.company-anthropic { background: rgba(212, 165, 116, 0.15); }
+    .rapper-tag.company-google { background: rgba(66, 133, 244, 0.15); }
+    .rapper-tag.company-meta { background: rgba(6, 104, 225, 0.15); }
+    .rapper-tag.company-xai { background: rgba(168, 85, 247, 0.15); }
+
+    .lyric-line.active.company-openai { --rapper-color: #10a37f; }
+    .lyric-line.active.company-anthropic { --rapper-color: #d4a574; }
+    .lyric-line.active.company-google { --rapper-color: #4285f4; }
+    .lyric-line.active.company-meta { --rapper-color: #0668e1; }
+    .lyric-line.active.company-xai { --rapper-color: #a855f7; }
+
+    /* Error */
+    .error-message {
+      display: none;
+      text-align: center;
+      padding: 15px 20px;
+      background: rgba(255, 50, 50, 0.1);
+      border: 1px solid rgba(255, 50, 50, 0.3);
+      border-radius: 10px;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .error-message.active {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+      }
+
+      .battle-arena {
+        gap: 15px;
+      }
+
+      .select-trigger {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+      }
+
+      .select-option {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+      }
+
+      .vs-badge {
+        width: 50px;
+        height: 50px;
+      }
+
+      .vs-badge span {
+        font-size: 1.2rem;
+      }
+
+      .battle-button {
+        padding: 14px 40px;
+        font-size: 1rem;
+      }
+
+      .lyric-line {
+        font-size: 0.95rem;
+        padding: 6px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-container">
+    <div class="bg-grid"></div>
+    <div class="bg-glow left"></div>
+    <div class="bg-glow right"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <h1>Epic AI Rap Battles</h1>
+    </header>
+
+    <div class="battle-arena">
+      <div class="fighter left">
+        <div class="custom-select" data-target="company1">
+          <div class="select-trigger">
+            <span class="select-value">Google</span>
+          </div>
+          <div class="select-options">
+            <div class="select-option" data-value="OpenAI" style="--option-color: #10a37f">OpenAI</div>
+            <div class="select-option" data-value="Anthropic" style="--option-color: #d4a574">Anthropic</div>
+            <div class="select-option selected" data-value="Google" style="--option-color: #4285f4">Google</div>
+            <div class="select-option" data-value="Meta" style="--option-color: #0668e1">Meta</div>
+            <div class="select-option" data-value="xAI" style="--option-color: #a855f7">xAI</div>
+          </div>
+        </div>
+        <select id="company1" hidden>
+          <option value="OpenAI">OpenAI</option>
+          <option value="Anthropic">Anthropic</option>
+          <option value="Google" selected>Google</option>
+          <option value="Meta">Meta</option>
+          <option value="xAI">xAI</option>
+        </select>
+      </div>
+
+      <div class="vs-badge">
+        <span>VS</span>
+      </div>
+
+      <div class="fighter right">
+        <div class="custom-select" data-target="company2">
+          <div class="select-trigger">
+            <span class="select-value">Meta</span>
+          </div>
+          <div class="select-options">
+            <div class="select-option" data-value="OpenAI" style="--option-color: #10a37f">OpenAI</div>
+            <div class="select-option" data-value="Anthropic" style="--option-color: #d4a574">Anthropic</div>
+            <div class="select-option" data-value="Google" style="--option-color: #4285f4">Google</div>
+            <div class="select-option selected" data-value="Meta" style="--option-color: #0668e1">Meta</div>
+            <div class="select-option" data-value="xAI" style="--option-color: #a855f7">xAI</div>
+          </div>
+        </div>
+        <select id="company2" hidden>
+          <option value="OpenAI">OpenAI</option>
+          <option value="Anthropic">Anthropic</option>
+          <option value="Google">Google</option>
+          <option value="Meta" selected>Meta</option>
+          <option value="xAI">xAI</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="battle-button-container">
+      <button class="battle-button" id="battleBtn">START BATTLE</button>
+    </div>
+
+    <div class="error-message" id="errorMsg"></div>
+
+    <div class="loader" id="loader">
+      <div class="loader-text">INITIALIZING BATTLE SEQUENCE</div>
+      <div class="loader-bar"></div>
+    </div>
+
+    <div class="audio-player" id="audioPlayer">
+      <div class="player-row">
+        <button class="play-pause-btn" id="playPauseBtn">
+          <svg id="playIcon" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+        <div class="progress-section">
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="time-display">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <audio id="audio"></audio>
+    </div>
+
+    <div class="lyrics-container" id="lyricsContainer">
+      <div id="lyricsContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // CDN base URL for audio and lyrics files (no trailing slash)
+    // Set to '' for local files, or your CDN URL like 'https://cdn.example.com/rap-battles'
+    const CDN_BASE_URL = 'https://pub-fd627da468c043a79d862fcebc6fd84b.r2.dev';
+
+    const BATTLE_FILES = {
+      'openai_vs_anthropic': 'openai_vs_anthropic',
+      'anthropic_vs_openai': 'openai_vs_anthropic',
+      'openai_vs_google': 'openai_vs_google',
+      'google_vs_openai': 'openai_vs_google',
+      'openai_vs_meta': 'openai_vs_meta',
+      'meta_vs_openai': 'openai_vs_meta',
+      'openai_vs_xai': 'xai_vs_openai',
+      'xai_vs_openai': 'xai_vs_openai',
+      'anthropic_vs_google': 'anthropic_vs_google',
+      'google_vs_anthropic': 'anthropic_vs_google',
+      'anthropic_vs_meta': 'anthropic_vs_meta',
+      'meta_vs_anthropic': 'anthropic_vs_meta',
+      'anthropic_vs_xai': 'anthropic_vs_xai',
+      'xai_vs_anthropic': 'anthropic_vs_xai',
+      'google_vs_meta': 'google_vs_meta',
+      'meta_vs_google': 'google_vs_meta',
+      'google_vs_xai': 'google_vs_xai',
+      'xai_vs_google': 'google_vs_xai',
+      'meta_vs_xai': 'meta_vs_xai',
+      'xai_vs_meta': 'meta_vs_xai'
+    };
+
+    const COMPANY_COLORS = {
+      'OpenAI': '#10a37f',
+      'Anthropic': '#d4a574',
+      'Google': '#4285f4',
+      'Meta': '#0668e1',
+      'xAI': '#a855f7'
+    };
+
+    const company1Select = document.getElementById('company1');
+    const company2Select = document.getElementById('company2');
+    const battleBtn = document.getElementById('battleBtn');
+    const loader = document.getElementById('loader');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audio = document.getElementById('audio');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+    const lyricsContainer = document.getElementById('lyricsContainer');
+    const lyricsContent = document.getElementById('lyricsContent');
+    const errorMsg = document.getElementById('errorMsg');
+    const bgGlowLeft = document.querySelector('.bg-glow.left');
+    const bgGlowRight = document.querySelector('.bg-glow.right');
+
+    let lyrics = [];
+    let totalLines = 0;
+    let lineElements = [];
+    const ANNOUNCER_DURATION = 8;
+
+    // Auto-scroll control - pause when user scrolls manually
+    let autoScrollEnabled = true;
+    let scrollTimeout = null;
+
+    // Update background glow colors based on selection
+    function updateGlowColors() {
+      const c1 = company1Select.value;
+      const c2 = company2Select.value;
+      document.documentElement.style.setProperty('--color-1', COMPANY_COLORS[c1]);
+      document.documentElement.style.setProperty('--color-2', COMPANY_COLORS[c2]);
+      bgGlowLeft.style.background = COMPANY_COLORS[c1];
+      bgGlowRight.style.background = COMPANY_COLORS[c2];
+    }
+
+    // Custom dropdown functionality
+    const customSelects = document.querySelectorAll('.custom-select');
+
+    customSelects.forEach(customSelect => {
+      const trigger = customSelect.querySelector('.select-trigger');
+      const options = customSelect.querySelectorAll('.select-option');
+      const valueDisplay = customSelect.querySelector('.select-value');
+      const targetId = customSelect.dataset.target;
+      const nativeSelect = document.getElementById(targetId);
+
+      // Toggle dropdown
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Close other dropdowns
+        customSelects.forEach(other => {
+          if (other !== customSelect) other.classList.remove('open');
+        });
+        customSelect.classList.toggle('open');
+      });
+
+      // Select option
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          const value = option.dataset.value;
+
+          // Update display
+          valueDisplay.textContent = value;
+
+          // Update selected state
+          options.forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+
+          // Update native select
+          nativeSelect.value = value;
+          nativeSelect.dispatchEvent(new Event('change'));
+
+          // Close dropdown
+          customSelect.classList.remove('open');
+        });
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+      customSelects.forEach(select => select.classList.remove('open'));
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        customSelects.forEach(select => select.classList.remove('open'));
+      }
+    });
+
+    company1Select.addEventListener('change', updateGlowColors);
+    company2Select.addEventListener('change', updateGlowColors);
+    updateGlowColors();
+
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function getBattlePath(c1, c2) {
+      const key = `${c1.toLowerCase()}_vs_${c2.toLowerCase()}`;
+      const filename = BATTLE_FILES[key];
+      if (!filename) return null;
+      const base = CDN_BASE_URL ? CDN_BASE_URL : 'output/ai_battles';
+      return `${base}/${filename}`;
+    }
+
+    function parseLyrics(text) {
+      const lines = text.split('\n');
+      const result = [];
+      let currentRapper = null;
+      let lineIndex = 0;
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+
+        const rapperMatch = trimmed.match(/^\[(.+)\]$/);
+        if (rapperMatch) {
+          currentRapper = rapperMatch[1];
+          continue;
+        }
+
+        if (trimmed.startsWith('EPIC RAP BATTLE') || trimmed.startsWith('===')) {
+          continue;
+        }
+
+        if (currentRapper && trimmed) {
+          result.push({
+            rapper: currentRapper,
+            text: trimmed,
+            index: lineIndex++
+          });
+        }
+      }
+
+      return result;
+    }
+
+    function getCompanyClass(name) {
+      return `company-${name.toLowerCase()}`;
+    }
+
+    function renderLyrics(parsedLyrics) {
+      lyricsContent.innerHTML = '';
+      lineElements = [];
+
+      let currentRapper = null;
+      let currentSection = null;
+
+      for (const line of parsedLyrics) {
+        if (line.rapper !== currentRapper) {
+          currentRapper = line.rapper;
+          currentSection = document.createElement('div');
+          currentSection.className = 'lyric-section';
+
+          const rapperTag = document.createElement('div');
+          rapperTag.className = `rapper-tag ${getCompanyClass(line.rapper)}`;
+          rapperTag.textContent = line.rapper;
+          currentSection.appendChild(rapperTag);
+
+          lyricsContent.appendChild(currentSection);
+        }
+
+        const lineEl = document.createElement('div');
+        lineEl.className = `lyric-line ${getCompanyClass(line.rapper)}`;
+        lineEl.dataset.index = line.index;
+        lineEl.textContent = line.text;
+        lineElements.push(lineEl);
+
+        currentSection.appendChild(lineEl);
+      }
+    }
+
+    function updateHighlightedLines() {
+      if (!audio.duration || totalLines === 0) return;
+
+      const effectiveTime = Math.max(0, audio.currentTime - ANNOUNCER_DURATION);
+      const lyricsOnlyDuration = audio.duration - ANNOUNCER_DURATION;
+
+      // Sliding window: shift one line at a time, always show 2 lines
+      const timePerLine = lyricsOnlyDuration / totalLines;
+      const currentLineIndex = Math.floor(effectiveTime / timePerLine);
+
+      // Show current line and next line (sliding window of 2)
+      const activeLine1 = Math.min(currentLineIndex, totalLines - 1);
+      const activeLine2 = Math.min(currentLineIndex + 1, totalLines - 1);
+
+      lineElements.forEach((lineEl, i) => {
+        lineEl.classList.remove('active', 'past');
+
+        if (audio.currentTime < ANNOUNCER_DURATION) return;
+
+        if (i === activeLine1 || i === activeLine2) {
+          lineEl.classList.add('active');
+        } else if (i < activeLine1) {
+          lineEl.classList.add('past');
+        }
+      });
+
+      const activeLine = lineElements[activeLine1];
+      if (activeLine && audio.currentTime >= ANNOUNCER_DURATION && autoScrollEnabled) {
+        activeLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // Pause auto-scroll when user scrolls manually
+    lyricsContainer.addEventListener('scroll', () => {
+      autoScrollEnabled = false;
+      clearTimeout(scrollTimeout);
+      // Re-enable auto-scroll after 5 seconds of no manual scrolling
+      scrollTimeout = setTimeout(() => {
+        autoScrollEnabled = true;
+      }, 5000);
+    }, { passive: true });
+
+    function showError(message) {
+      errorMsg.textContent = message;
+      errorMsg.classList.add('active');
+      setTimeout(() => errorMsg.classList.remove('active'), 5000);
+    }
+
+    battleBtn.addEventListener('click', async () => {
+      const c1 = company1Select.value;
+      const c2 = company2Select.value;
+
+      if (c1 === c2) {
+        showError('Select two different companies!');
+        return;
+      }
+
+      const basePath = getBattlePath(c1, c2);
+      if (!basePath) {
+        showError('Battle not found!');
+        return;
+      }
+
+      audio.pause();
+      audioPlayer.classList.remove('active');
+      lyricsContainer.classList.remove('active');
+      errorMsg.classList.remove('active');
+      battleBtn.disabled = true;
+      loader.classList.add('active');
+
+      try {
+        const lyricsResponse = await fetch(`${basePath}_lyrics.txt`);
+        if (!lyricsResponse.ok) throw new Error('Lyrics not found');
+        const lyricsText = await lyricsResponse.text();
+
+        lyrics = parseLyrics(lyricsText);
+        totalLines = lyrics.length;
+
+        audio.src = `${basePath}.mp3`;
+
+        await new Promise((resolve, reject) => {
+          audio.oncanplaythrough = resolve;
+          audio.onerror = reject;
+          audio.load();
+        });
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        loader.classList.remove('active');
+        audioPlayer.classList.add('active');
+        lyricsContainer.classList.add('active');
+
+        renderLyrics(lyrics);
+
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+
+      } catch (err) {
+        loader.classList.remove('active');
+        showError('Failed to load battle.');
+        console.error(err);
+      }
+
+      battleBtn.disabled = false;
+    });
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = `${progress}%`;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+      updateHighlightedLines();
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    });
+
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const percent = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = percent * audio.duration;
+    });
+  </script>
+</body>
+</html>
