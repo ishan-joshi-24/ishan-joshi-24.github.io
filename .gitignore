@@ -5,3 +5,9 @@ _site
 vendor
 .bundle
 Gemfile.lock
+
+# local screenshots and playwright artifacts
+.playwright-mcp/
+*.png
+!portfolio_profile.png
+!assets/**/*.png

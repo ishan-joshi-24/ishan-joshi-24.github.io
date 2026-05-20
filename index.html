@@ -1,24 +1,117 @@
 ---
 layout: default
 title: ""
+description: "Applied AI Engineer. I ship LLM and retrieval systems that hold up in production, semantic search, agent backends, prompt pipelines."
 ---
 
-<div class="home">
-  <div class="home-intro">
-    <div class="profile-image-container">
-      <img src="{{ '/portfolio_profile.png' | relative_url }}" alt="Ishan Joshi" class="profile-image">
-    </div>
-    <p>
-      I spend a lot of time understanding how systems work. Not just that they work, but why they work the way they do. What trade-offs shaped the design decisions. What problems were being solved.
-    </p>
+<section class="hero hero-big">
+  <h1>Hi, I'm Ishan.</h1>
+  <p class="tagline">
+    <strong>Applied AI Engineer.</strong> I ship LLM and retrieval systems that hold up in production. Semantic search at hundreds-of-thousands scale, agent backends, document parsers that actually know when to say "I don't know."
+  </p>
+  <p class="tagline tagline-sub">
+    Open to senior AI roles.
+  </p>
+</section>
 
-    <p>
-      I write deep dives on things I find genuinely interesting. The goal is to explain the non-obvious parts, the parts that make you say "oh, that's why." Whether it's databases, concurrency, JavaScript, or architecture, I'm interested in the fundamentals and the trade-offs.
-    </p>
-
-    <p>
-      Check out the <a href="/posts/">posts</a> to see what I've been thinking about.
-    </p>
+<section class="section section-featured">
+  <div class="section-head">
+    <h2>Things I've built</h2>
   </div>
 
-</div>
+  <div class="feature-list">
+
+    <a class="feature-card tone-1" href="{{ '/builds/semantic-candidate-matching/' | relative_url }}">
+      <div class="feature-eyebrow">pgvector · OpenAI embeddings · HNSW</div>
+      <h3 class="feature-title">Semantic Search That Survives Production</h3>
+      <p class="feature-lede">Replacing chronological lists with embedding-driven relevance ranking. Per-slot top-K vector search, round-robin interleave, and the trick that kept the existing SQL filter intact.</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+    <a class="feature-card tone-2" href="{{ '/builds/llm-resume-parsing/' | relative_url }}">
+      <div class="feature-eyebrow">LLM extraction · prompt design · OpenAI file upload</div>
+      <h3 class="feature-title">An LLM Document Parser That Knows When to Shut Up</h3>
+      <p class="feature-lede">The most important line in the prompt: "return null when you aren't sure." How to parse structured data out of messy documents with an LLM, with schema enforcement, prompt sanitization, and defenses against documents that try to be prompts.</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+    <a class="feature-card tone-3" href="{{ '/builds/concept-embedding-pipeline/' | relative_url }}">
+      <div class="feature-eyebrow">Cron design · cost engineering · incremental processing</div>
+      <h3 class="feature-title">An Embedding Cron That Doesn't Re-Embed</h3>
+      <p class="feature-lede">Six thousand concepts, twelve directions, three phases. The entire design is about not doing work. <code>source_id</code> tracking, full-regen only when the taxonomy moves, and the cache-bypass flag that saved Redis.</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+    <a class="feature-card tone-5" href="{{ '/builds/llm-named-saved-searches/' | relative_url }}">
+      <div class="feature-eyebrow">Prompt design · injection defense · best-effort LLM</div>
+      <h3 class="feature-title">Letting an LLM Name a Saved Filter Set</h3>
+      <p class="feature-lede">An LLM generates a one-line label for every saved search. The design is all the places it isn't allowed to surprise you. PII guards, prompt injection defense, word-boundary truncation, best-effort failure mode that never blocks a save.</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+    <a class="feature-card tone-4" href="{{ '/builds/ai-generated-offer-projects/' | relative_url }}">
+      <div class="feature-eyebrow">Generator + judge · LLM critique · two-call pipeline</div>
+      <h3 class="feature-title">Generate + Judge for User-Facing Content</h3>
+      <p class="feature-lede">A two-call LLM pipeline. One model generates user-facing content, a second model audits it. Ship, revise, or regenerate. The audit step is what makes this safe to put in front of people without eroding trust over time.</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+    <a class="feature-card tone-6" href="{{ '/builds/agent-backend-api-auth/' | relative_url }}">
+      <div class="feature-eyebrow">AI agents · API design · audit + trust</div>
+      <h3 class="feature-title">An AI Agent Backend With a Tiny Vocabulary</h3>
+      <p class="feature-lede">External AI agents acting on a platform via a deliberately small API. The vocabulary is the security boundary: four endpoints, explicit scopes, propose-don't-commit. What makes "AI in production" different from "AI causing incidents in production."</p>
+      <div class="feature-cta">read the write-up <span class="arrow">→</span></div>
+    </a>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Side projects</h2>
+  </div>
+
+  <div class="projects">
+    <a class="project-card" href="{{ '/epic-ai-rap-battles/' | relative_url }}">
+      <div class="project-title">Epic AI Rap Battles <span class="arrow">→</span></div>
+      <p class="project-desc">LLM-generated rap battles between historical figures. Because someone had to. Voice synthesis included.</p>
+    </a>
+    <a class="project-card" href="{{ '/2026/01/31/linkedin-focus-local-ai-feed-filter.html' | relative_url }}">
+      <div class="project-title">LinkedIn Focus <span class="arrow">→</span></div>
+      <p class="project-desc">A Chrome extension that filters your LinkedIn feed with a local LLM. No data leaves your machine. Built in an afternoon.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Short reads</h2>
+    <span class="meta">things I find interesting</span>
+  </div>
+
+  <ul class="writing-list">
+    {% for post in site.posts limit:10 %}
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="when">{{ post.date | date: "%b %Y" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ '/posts/' | relative_url }}" class="see-all">all writing →</a>
+</section>
+
+<section class="section section-contact">
+  <div class="section-head">
+    <h2>Get in touch</h2>
+  </div>
+  <p class="contact-line">
+    Working on something interesting in the LLM / retrieval / agent space? Want to argue about whether vector search needs a re-ranker? I'd love to hear from you.
+  </p>
+  <p class="contact-links">
+    <a href="mailto:joshishan21@gmail.com">joshishan21@gmail.com</a>
+    <span class="dot">·</span>
+    <a href="https://github.com/ishan-joshi-24" target="_blank" rel="noopener">github</a>
+    <span class="dot">·</span>
+    <a href="https://www.linkedin.com/in/ishan-joshi180" target="_blank" rel="noopener">linkedin</a>
+  </p>
+</section>

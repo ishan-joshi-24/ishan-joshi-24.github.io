@@ -20,7 +20,7 @@ I asked Claude to help me build it. Within minutes, I had:
 - Popup UI with toggle switches
 - Integration with Ollama for local inference
 
-A couple hours of refining—fixing selectors, tuning classification prompts, polishing the UI—and it was done.
+A couple hours of refining-fixing selectors, tuning classification prompts, polishing the UI-and it was done.
 
 That's it. An afternoon.
 
@@ -53,9 +53,9 @@ You have a problem? You can probably solve it in an afternoon. The combination o
 
 ...means you can go from "I wish this existed" to "I built it" in hours, not weeks.
 
-Anyone with basic programming knowledge and some LLM tooling knowledge can build something like this now. And I'm not even sure about the first—that might not be the deciding factor anymore.
+Anyone with basic programming knowledge and some LLM tooling knowledge can build something like this now. And I'm not even sure about the first-that might not be the deciding factor anymore.
 
-The barrier is finally low enough to just solve your own problems—exactly the way you want them solved.
+The barrier is finally low enough to just solve your own problems-exactly the way you want them solved.
 
 ## Try It
 

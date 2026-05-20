@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="post-content build-content">
+  <header class="post-header">
+    <div class="build-eyebrow">A thing I built</div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="build-description">{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="post-body">
+    {{ content }}
+  </div>
+  <footer class="post-footer">
+    <a href="{{ '/' | relative_url }}" class="back-link">← back home</a>
+  </footer>
+</article>

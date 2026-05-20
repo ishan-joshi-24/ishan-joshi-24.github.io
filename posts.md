@@ -1,26 +1,25 @@
 ---
 layout: default
-title: Posts
+title: Writing
 permalink: /posts/
+description: Deep-dives on backend systems, AI infrastructure, and the trade-offs behind them.
 ---
 
-<div class="posts-page">
-  <h1>Posts</h1>
+<section class="hero">
+  <h1>Writing</h1>
+  <p class="tagline">Deep-dives on the parts of a system that explain why it works the way it does, databases, distributed systems, LLM infrastructure, and the trade-offs underneath.</p>
+</section>
 
-  {% if site.posts.size > 0 %}
-    <div class="post-list-container">
-      {% for post in site.posts %}
-        <article class="post-item">
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
-          {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt }}</p>
-          {% endif %}
-          <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>No posts yet.</p>
-  {% endif %}
-</div>
+<ul class="posts-index">
+  {% for post in site.posts %}
+    <li>
+      <div class="post-row">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="when">{{ post.date | date: "%b %Y" }}</span>
+      </div>
+      {% if post.excerpt %}
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 32 }}</p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

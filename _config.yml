@@ -1,6 +1,6 @@
 # Site Settings
 title: Ishan Joshi
-description: 
+description: Applied AI Engineer. LLM and retrieval systems in production.
 author: Ishan Joshi
 email: joshishan21@gmail.com
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -8,10 +8,22 @@ url: "https://ishan-joshi.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+# Custom collections
+collections:
+  builds:
+    output: true
+    permalink: /builds/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: builds
+    values:
+      layout: build
 
 # Custom CSS
 sass:

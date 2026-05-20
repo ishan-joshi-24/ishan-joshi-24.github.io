@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description | default: 'Backend engineer building AI features.' }}{% endif %}">
+  {% feed_meta %}
+  {% seo title=false %}
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a href="{{ '/' | relative_url }}" class="brand">ishan joshi</a>
+      <nav class="site-nav">
+        <a href="{{ '/' | relative_url }}" {% if page.url == "/" %}class="active"{% endif %}>work</a>
+        <a href="{{ '/posts/' | relative_url }}" {% if page.url contains "/posts" %}class="active"{% endif %}>writing</a>
+        <a href="{{ '/about/' | relative_url }}" {% if page.url == "/about/" %}class="active"{% endif %}>about</a>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-row">
+        <span>© {{ 'now' | date: "%Y" }} Ishan Joshi</span>
+        <span class="footer-links">
+          <a href="mailto:{{ site.email }}">email</a>
+          <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener">linkedin</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
