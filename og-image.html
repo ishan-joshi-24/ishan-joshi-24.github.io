@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1200px; height: 630px;
+    background: #fbf7f0;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    color: #110d0a;
+    overflow: hidden;
+  }
+  .card {
+    width: 1200px; height: 630px;
+    padding: 70px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .brand {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 22px;
+    color: #4f46e5;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 {
+    font-size: 92px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    margin-bottom: 28px;
+  }
+  .hero .role {
+    display: inline-block;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, transparent 0%, transparent 3%, rgba(245, 158, 11, 0.45) 3%, rgba(245, 158, 11, 0.45) 97%, transparent 97%);
+    padding: 0 6px;
+    margin-bottom: 22px;
+  }
+  .hero .tagline {
+    font-size: 28px;
+    color: #3d362e;
+    line-height: 1.35;
+    max-width: 1000px;
+    font-weight: 400;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    color: #110d0a;
+    font-weight: 500;
+  }
+  .tags {
+    display: flex;
+    gap: 12px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    color: #3d362e;
+    padding: 8px 16px;
+    background: #f3ecde;
+    border: 1px solid #d8cdba;
+    border-radius: 999px;
+  }
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #4f46e5 0%, #ec4899 50%, #ff6b4a 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="accent-bar"></div>
+    <div>
+      <div class="brand">ishan-joshi.com</div>
+    </div>
+    <div class="hero">
+      <h1>Hi, I'm Ishan.</h1>
+      <span class="role">Applied AI Engineer.</span>
+      <p class="tagline">I ship LLM and retrieval systems that hold up in production. Semantic search, agent backends, document parsers that know when to say "I don't know."</p>
+    </div>
+    <div class="footer">
+      <span class="url">ishan-joshi.com</span>
+      <div class="tags">
+        <span class="tag">pgvector</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">embeddings</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
