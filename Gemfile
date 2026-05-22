@@ -5,6 +5,10 @@ gem "minima", "~> 2.5"
 gem "jekyll-feed", "~> 0.12"
 gem "jekyll-seo-tag", "~> 2.8"
 
+# Pin to a working version on GitHub Actions runners
+# (sass-embedded 1.100.0 has a broken native build)
+gem "sass-embedded", "~> 1.97.0"
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated gem.
 platforms :mingw, :x64_mingw, :mswin, :jruby do

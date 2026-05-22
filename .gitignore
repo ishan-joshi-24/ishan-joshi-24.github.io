@@ -4,7 +4,6 @@ _site
 .jekyll-metadata
 vendor
 .bundle
-Gemfile.lock
 
 # local screenshots and playwright artifacts
 .playwright-mcp/
