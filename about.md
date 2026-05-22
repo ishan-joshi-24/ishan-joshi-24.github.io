@@ -61,4 +61,4 @@ The most underrated skill in shipping AI is **knowing what to not let the LLM do
 - **Email** &middot; [joshishan21@gmail.com](mailto:joshishan21@gmail.com)
 - **GitHub** &middot; [ishan-joshi-24](https://github.com/ishan-joshi-24)
 - **LinkedIn** &middot; [ishan-joshi180](https://www.linkedin.com/in/ishan-joshi180)
-- **CV** &middot; [download](https://drive.google.com/file/d/1K2KHFLPzQTJKF9GD8gdiE7uYVed-CFsJ/view?usp=drive_link)
+- **CV** &middot; [download](https://drive.google.com/file/d/1ipVHNXCfd8J5EC3rWVcqMt68juANxKbY/view?usp=drive_link)

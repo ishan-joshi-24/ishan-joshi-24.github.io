@@ -715,6 +715,77 @@ pre code { background: none; padding: 0; color: inherit; }
   50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1); }
 }
 
+/* === Resume page === */
+.resume-page {
+  padding: 0.5rem 0 2rem;
+}
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.resume-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  padding: 0.55rem 1rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg-elev);
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  background: var(--accent-5);
+  border-color: var(--accent-5);
+  color: var(--bg-elev);
+}
+.resume-title {
+  font-size: 2.5rem;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.resume-sub {
+  color: var(--fg-muted);
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+}
+.resume-frame-wrapper {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-elev);
+  box-shadow: 0 8px 32px -16px rgba(26, 22, 20, 0.12);
+}
+.resume-frame {
+  display: block;
+  width: 100%;
+  height: 1080px;
+  border: 0;
+}
+
 /* === Responsive === */
 
 /* Tablet */
@@ -838,6 +909,13 @@ pre code { background: none; padding: 0; color: inherit; }
   }
   .about-row .value { text-align: left; font-size: 0.9375rem; }
   .about-row .label { font-size: 0.7rem; min-width: 0; }
+
+  /* Resume page on mobile */
+  .resume-title { font-size: 1.75rem; }
+  .resume-sub { font-size: 0.9375rem; }
+  .resume-frame { height: 720px; }
+  .resume-header { gap: 0.75rem; }
+  .btn { font-size: 0.75rem; padding: 0.5rem 0.85rem; }
 
   /* Page / post bodies */
   .page-title, .post-title {
